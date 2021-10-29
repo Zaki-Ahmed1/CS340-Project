@@ -11,20 +11,60 @@
     <br/>
     <h3>Browse Existing Inventory</h3>
         <form>
-            <p>Product options will appear here</p>
-        </form>
-    <h3>Add New Product</h3>
-        <form>
-            <p></p>
+            <p>Product table rows will appear here</p>
         </form>
     <h3>Browse Employee List</h3>
+    <form>
+        <p>Rows of employees will appear here</p> 
+    </form>
+<h3>See Your Orders</h3>
+    <form>
+        <p>A table with rows of customer orders will appear here</p>
+    </form>
+
+    <h3>Add New Product</h3>
         <form>
-            <p>A list of employees and their contact info will appear here</p> 
-        </form>
-    <h3>See Your Orders</h3>
-        <form>
-            <p>A table of customer order will appear here</p>
-        </form>
+            <fieldset>
+                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
+            <legend>Product</legend>
+            <label>Name:<br/>
+                <input type="text" name="productName" /></label><br/>
+            <label>Price:<br/>
+                <input type="text" name="price" /></label><br/>
+            <label>Inventory:<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <label>Description:<br/>
+            <textarea name="description" cols="20" rows="6"> Enter product desription</textarea>
+            </fieldset>
+    </form>
+
+    <h3>Add New Employee</h3>
+    <form>
+        <fieldset>
+        <legend>Employee</legend>
+        <label>Name:<br/>
+            <input type="text" name="employeeName" /></label><br/>
+        <label>Title:<br/>
+            <input type="text" name="title" /></label><br/>
+        <label>Email:<br/>
+            <input type="text" name="employeeEmail" /></label><br/>
+        <label>Phone:<br/>
+            <input type="text" name="employeePhone" /></label><br/>
+        </fieldset>
+    </form>
+
+    <h3>Add New Customer</h3>
+    <form>
+        <fieldset>
+        <legend>Customer</legend>
+        <label>Name:<br/>
+            <input type="text" name="customerName" /></label><br/>
+        <label>Email:<br/>
+            <input type="text" name="customerEmail" /></label><br/>
+        <label>Phone:<br/>
+            <input type="text" name="customerPhone" /></label><br/>
+        </fieldset>
+    </form>
 
 </body>
 
