@@ -4,81 +4,27 @@
 <head>
     <title>Dunder Mifflin 3.0</title>
 </head>
+<body>
 
     <h1>Dunder Mifflin 3.0 Database Sales Website</h1>
 
     <nav>
         <!-- TODO have the href link to the appropriate pages -->
-    <a href="https://www.reddit.com/r/OSUOnlineCS/">Products</a> |
-    <a href="https://www.reddit.com/r/OSUOnlineCS/">Customers</a> |
-    <a href="https://www.reddit.com/r/OSUOnlineCS/">Employees</a> |
-    <a href="https://www.reddit.com/r/OSUOnlineCS/">Orders</a> |
+        <a href="http://localhost:8000/">Home</a> |
+        <a href="http://localhost:8000/products">Products</a> |
+        <a href="http://localhost:8000/employees">Employees</a> |
+        <a href="http://localhost:8000/customers">Customers</a> |
+        <a href="http://localhost:8000/orders">Orders</a> |
+        <a href="http://localhost:8000/carts">Carts</a> |
     </nav>
 
     <br/>
     <h3>Outline</h3>
+    Welcome to the Dunder Mifflin Infinity 3.0 website. Here you can place orders for paper products from our Scranton, PA branch.
+    Use the tabs above to navigate to your appropriate area to find information related to your orders, cart, employee database, etc.
+    Remember: We use the honor system, so only update your information.
     <br/>
-    <h3>Customers</h3>
-        <form>
-            <p>Product table rows will appear here</p>
-        </form>
-    <h3>Employees</h3>
-    <form>
-        <p>Rows of employees will appear here</p> 
-    </form>
-<h3>Orders</h3>
-    <form>
-        <p>A table with rows of customer orders will appear here</p>
-    </form>
-<h3>Cart</h3>
-<form>
-    <p>A table with rows of customer orders will appear here</p>
-</form>
 
-    <h3>Add New Product</h3>
-        <form>
-            <fieldset>
-                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
-            <legend>Product</legend>
-            <label>Name:<br/>
-                <input type="text" name="productName" /></label><br/>
-            <label>Price:<br/>
-                <input type="text" name="price" /></label><br/>
-            <label>Inventory:<br/>
-                <input type="text" name="inventory" /></label><br/>
-            <label>Description:<br/>
-            <textarea name="description" cols="20" rows="6"> Enter product desription</textarea>
-            </fieldset>
-    </form>
-
-    <h3>Add New Employee</h3>
-    <form>
-        <fieldset>
-        <legend>Employee</legend>
-        <label>Name:<br/>
-            <input type="text" name="employeeName" /></label><br/>
-        <label>Title:<br/>
-            <input type="text" name="title" /></label><br/>
-        <label>Email:<br/>
-            <input type="text" name="employeeEmail" /></label><br/>
-        <label>Phone:<br/>
-            <input type="text" name="employeePhone" /></label><br/>
-        </fieldset>
-    </form>
-
-    <h3>Add New Customer</h3>
-    <form>
-        <fieldset>
-        <legend>Customer</legend>
-        <label>Name:<br/>
-            <input type="text" name="customerName" /></label><br/>
-        <label>Email:<br/>
-            <input type="text" name="customerEmail" /></label><br/>
-        <label>Phone:<br/>
-            <input type="text" name="customerPhone" /></label><br/>
-        </fieldset>
-    </form>
 
 </body>
-
 </html>
