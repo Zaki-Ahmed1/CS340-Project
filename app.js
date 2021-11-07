@@ -32,63 +32,40 @@
 
 // ...UNCOMMENT EVERYTHING BETWEEN START/FINISH FOR DEPLOYING AND RUNNING LOCALLY...
 // ----------------------------------------------------START---------------------------------------------------------
-// //cd into root, Run "npm install", and then run "node app.js"...
-
-// let http = require('http');
-// let fs = require('fs');
-
-// let handleRequest = (request, response) => {
-//     response.writeHead(200, {
-//         'Content-Type': 'text/html'
-//     });
-//     fs.readFile('./index.html', null, function (error, data) {
-//         if (error) {
-//             response.writeHead(404);
-//             respone.write('Whoops! File not found!');
-//         } else {
-//             response.write(data);
-//         }
-//         response.end();
-//     });
-// };
-
-// http.createServer(handleRequest).listen(8000);
-// // Use this in browser - http://localhost:8000/index.html
-// ----------------------------------------------------END---------------------------------------------------------
-
-
-// ...UNCOMMENT EVERYTHING BETWEEN START/FINISH FOR DEPLOYING AND RUNNING LOCALLY...
-// ----------------------------------------------------START---------------------------------------------------------
 //cd into root, Run "npm install", and then run "node app.js"...
 
 // Express
-const express = require('express');
-const app = new express();
-PORT        = 8000;
+const express   = require('express');
+const app       = new express();
+PORT            = 8000;
 
 
 app.get('/', function(request, response){
-    response.sendFile('index.html', { root: '.' });
+    response.sendFile('index.html', { root: './pages' });
 });
 
 app.get('/index', function(request, response){
-    response.sendFile('index.html', { root: '.' });
+    response.sendFile('index.html', { root: './pages' });
 });
 
 app.get('/products', function(request, response){
-    response.sendFile('products.html', { root: '.' });
+    response.sendFile('products.html', { root: './pages' });
 });
 
 app.get('/employees', function(request, response){
-    response.sendFile('employees.html', { root: '.' });
+    response.sendFile('employees.html', { root: './pages' });
+});
+
+app.get('/customers', function(request, response){
+    response.sendFile('customers.html', { root: './pages' });
 });
 
 app.get('/orders', function(request, response){
-    response.sendFile('orders.html', { root: '.' });
+    response.sendFile('orders.html', { root: './pages' });
 });
 
 app.get('/carts', function(request, response){
-    response.sendFile('carts.html', { root: '.' });
+    response.sendFile('carts.html', { root: './pages' });
 });
 
 

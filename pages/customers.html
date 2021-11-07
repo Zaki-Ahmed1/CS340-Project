@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Dunder Mifflin 3.0</title>
+    <!-- Universal Styling-->
+    <style>
+        th, td {padding: 10px}
+        button {float: right; margin-left: -50%;}
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar-->
+    <h1>Dunder Mifflin 3.0 Database Sales Website</h1>
+    <nav style="margin: auto; width: 50%">
+        <a href="http://localhost:8000/">Home</a> |
+        <a href="http://localhost:8000/products">Products</a> |
+        <a href="http://localhost:8000/employees">Employees</a> |
+        <a href="http://localhost:8000/customers">Customers</a> |
+        <a href="http://localhost:8000/orders">Orders</a> |
+        <a href="http://localhost:8000/carts">Carts</a>
+    </nav>
+    <br>
+
+    <!-- Table-->
+    <br>
+    <h3>Customers Table</h3>
+    <hr>
+
+    <table style="margin: 50px; padding: 10px;" border="black">
+        <thead>
+            <tr>
+                <th>customer_id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>cart_id</th>
+                <th>employee_id</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td><i>1</i></td>
+                <td>Zaki Ahmed</td>
+                <td>ahmedza@oregonstate.edu</td>
+                <td>123-123-1234</td>
+                <td>34</td>
+                <td>1</td>
+            </tr>
+
+            <tr>
+                <td><i>2</i></td>
+                <td>Bryan Rodriguez</td>
+                <td>rodribry@oregonstate.edu</td>
+                <td>777-777-7777</td>
+                <td>145</td>
+                <td>2</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <!-- Customer Commands-->
+    <br><br>
+    <h3>
+        Customer Use Only
+    </h3>
+    <hr>
+    <div style="margin-left: 50px; padding: 10px;" border="black">
+        <form style="width: 50%">
+            <fieldset>
+                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
+            <legend><b>ADD CUSTOMER</b></legend>
+            <label>Name:<br/>
+                <input type="text" name="productName" />
+            </label><br/>
+            <label>Email:<br/>
+                <input type="text" name="price" /></label><br/>
+            <label>Phone:<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <button>Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Employee Commands-->
+    <br><br>
+    <h3>
+        Employee Use Only
+    </h3>
+    <hr>
+    <div style="margin-left: 50px; padding: 10px;" border="black">
+        <form style="width: 50%">
+            <fieldset>
+                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
+            <legend><b>ADD CUSTOMER</b></legend>
+            <label>Name:<br/>
+                <input type="text" name="productName" />
+            </label><br/>
+            <label>Email:<br/>
+                <input type="text" name="price" /></label><br/>
+            <label>Phone:<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <label>Employee Rep (Employee ID):<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <button>Submit</button>
+            </fieldset>
+        </form>
+
+        <br>
+        <form style="width: 50%">
+            <fieldset>
+                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
+            <legend><b>UPDATE CUSTOMER</b></legend>
+            <label>Customer ID:<br/>
+                <input type="text" name="productName" />
+            <label><br>Name:<br/>
+                <input type="text" name="productName" />
+            </label><br/>
+            <label>Email:<br/>
+                <input type="text" name="price" /></label><br/>
+            <label>Phone:<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <label>Employee Rep (Employee ID):<br/>
+                <input type="text" name="inventory" /></label><br/>
+            <button>Submit</button>
+            </fieldset>
+        </form>
+
+        <br>
+        <form style="width: 50%">
+            <fieldset>
+                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
+            <legend><b>DELETE CUSTOMER</b></legend>
+            <label>Customer ID:<br/>
+                <input type="text" name="productName" />
+            </label><br/>
+            <button>Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

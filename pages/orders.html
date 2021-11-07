@@ -6,6 +6,7 @@
     <!-- Universal Styling-->
     <style>
         th, td {padding: 10px}
+        button {float: right; margin-left: -50%;}
     </style>
 </head>
 
@@ -23,78 +24,52 @@
     <br>
 
     <!-- Table-->
-    <br><br><br><br>
-    <h3>Products Table</h3>
+    <br>
+    <h3>Orders Table</h3>
     <hr>
 
     <table style="margin: 50px; padding: 10px;" border="black">
         <thead>
             <tr>
-                <th>product_id</th>
-                <th>name</th>
-                <th>price</th>
-                <th>inventory</th>
-                <th>description</th>
-                <th>category</th>
+                <th>order_id</th>
+                <th>customer_id</th>
+                <th>cart_id</th>
             </tr>
         </thead>
         
         <tbody>
             <tr>
                 <td><i>1</i></td>
-                <td>White Paper</td>
-                <td>5.00</td>
-                <td>1000</td>
-                <td>Paper that is white.</td>
-                <td>Paper</td>
+                <td>2</td>
+                <td>3</td>
             </tr>
 
             <tr>
                 <td><i>2</i></td>
-                <td>Stapler</td>
-                <td>10.00</td>
-                <td>50</td>
-                <td>This is a stapler.</td>
-                <td>Supply</td>
+                <td>45</td>
+                <td>24</td>
             </tr>
         </tbody>
     </table>
     </div>
 
     <!-- Customer Commands-->
-    <br><br><br><br>
+    <br><br>
     <h3>
         Customer Use Only
     </h3>
     <hr>
-    <div style="margin: 50px; padding: 10px;">
+    <div style="margin-left: 50px; padding: 10px;">
         <form style="width: 50%">
             <fieldset>
                 <!-- TODO: do we need to convert the price and inventory from text to integers? -->
-            <legend><b>SEARCH PRODUCT BY...</b></legend>
-            <label>Name:<br/>
+            <legend><b>SEARCH ORDER BY...</b></legend>
+            <label>Customer ID:<br/>
                 <input type="text" name="productName" />
             </label><br/>
-            or <br>
-            <label>Category:<br/>
-                <input type="text" name="category" /></label><br/>
+            <button>Submit</button>
             </fieldset>
         </form><br>
-
-        <form style="width: 50%">
-            <fieldset>
-                <!-- TODO: do we need to convert the price and inventory from text to integers? -->
-            <legend><b>ADD PRODUCT TO CART...</b></legend>
-            <label>PRODUCT ID:<br/>
-                <input type="text" name="productName" />
-            </label><br/>
-            <label>QUANTITY:<br/>
-                <input type="text" name="category" /></label><br/>
-            <label>CUSTOMER ID:<br/>
-                <input type="text" name="productName" />
-            </label><br/>
-            </fieldset>
-        </form>
     </div>
 
     <!-- Employee Commands-->
