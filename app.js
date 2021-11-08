@@ -5,7 +5,6 @@
 // Express
 const express   = require('express');
 const app       = new express();
-// PORT            = 8000;
 PORT            = 12626;
 
 // OSU SERVERS
