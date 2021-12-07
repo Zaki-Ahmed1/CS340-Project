@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body>
+<body onload="getData()">
     <!-- Navigation Bar-->
 
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1200px-Dunder_Mifflin%2C_Inc.svg.png">
@@ -34,29 +34,8 @@
     <h3>Orders Table</h3>
     <hr>
 
-    <table style="margin: 50px; padding: 10px;" border="black">
-        <thead>
-            <tr>
-                <th>order_id</th>
-                <th>customer_id</th>
-                <th>cart_id</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr>
-                <td><i>1</i></td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-
-            <tr>
-                <td><i>2</i></td>
-                <td>45</td>
-                <td>24</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="tableDiv">
+    
     </div>
 
     <!-- Customer Commands-->
@@ -71,13 +50,13 @@
                 <!-- TODO: do we need to convert the price and inventory from text to integers? -->
             <legend><b>SEARCH ORDER BY...</b></legend>
             <label>Order ID:<br/>
-                <input type="text" name="productName" />
+                <input id="productName" type="text" name="productName" />
             </label><br/>
             or<br>
             <label>Customer ID:<br/>
-                <input type="text" name="productName" />
+                <input id="category" type="text" name="productName" />
             </label><br/>
-            <button>Submit</button>
+            <button type="button" onclick="searchFunction()">Submit</button>
             </fieldset>
         </form><br>
     </div>
@@ -116,6 +95,144 @@
         </form><br>
     </div>
 
+<script>
+    function getData() {
+        fetch("http://flip1.engr.oregonstate.edu:12626/getorders", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(
+            response => response.json()
+        )
+        .then(response => {
+            console.log(response);
+            // let productInfo=response[0].product_name;
+            let productInfo = '';
+            let productDiv = document.getElementById("tableDiv");
+            
+            productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+            productInfo += '<thead>';
+            productInfo += '<tr>';
+            productInfo += '<th>order_id</th>';
+            productInfo += '<th>customer_id</th>';
+            productInfo += '<th>cart_id</th>';
+            productInfo += '</tr>';
+            productInfo += '</thead>';
+            productInfo += '<tbody>';
+            
+            response.map(product => {
+                productInfo += '<tr>';
+                productInfo += `<td>${product.order_id}</td>`;
+                productInfo += `<td>${product.customer_id}</td>`;
+                productInfo += `<td>${product.cart_id}</td>`;
+                productInfo += '</tr>';
+            });
+
+            productInfo += '</tbody></table>';
+            
+            productDiv.innerHTML = productInfo;
+        })
+        .catch(function(response){ 
+            console.log(response);
+        });
+    }
+
+    function searchFunction() {
+        let name = document.getElementById("productName").value;
+        let category = document.getElementById("category").value;
+
+        if (name.length == 0) {
+            fetch(`http://flip1.engr.oregonstate.edu:12626/searchcustomer/${category}`, {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(
+                    response => {
+                    console.log(response);
+                    // let productInfo=response[0].product_name;
+                    let productInfo = '';
+                    let productDiv = document.getElementById("tableDiv");
+                    
+                    productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+                    productInfo += '<thead>';
+                    productInfo += '<tr>';
+                    productInfo += '<th>order_id</th>';
+                    productInfo += '<th>customer_id</th>';
+                    productInfo += '<th>cart_id</th>';
+                    productInfo += '</tr>';
+                    productInfo += '</thead>';
+                    productInfo += '<tbody>';
+                    
+                    response.map(product => {
+                        productInfo += '<tr>';
+                        productInfo += `<td>${product.order_id}</td>`;
+                        productInfo += `<td>${product.customer_id}</td>`;
+                        productInfo += `<td>${product.cart_id}</td>`;
+                        productInfo += '</tr>';
+                    });
+
+                    productInfo += '</tbody></table>';
+                    productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
+                    
+                    productDiv.innerHTML = productInfo;
+                })
+                .catch(function(response){
+                    console.log(response);
+                });
+        
+        } else {
+            fetch(`http://flip1.engr.oregonstate.edu:12626/searchorder/${name}`, {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+            })
+            .then(
+                response => response.json()
+            )
+            .then(response => {
+                console.log(response);
+                // let productInfo=response[0].product_name;
+                let productInfo = '';
+                let productDiv = document.getElementById("tableDiv");
+                
+                productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+                productInfo += '<thead>';
+                productInfo += '<tr>';
+                productInfo += '<th>order_id</th>';
+                productInfo += '<th>customer_id</th>';
+                productInfo += '<th>cart_id</th>';
+                productInfo += '</tr>';
+                productInfo += '</thead>';
+                productInfo += '<tbody>';
+                
+                response.map(product => {
+                    productInfo += '<tr>';
+                    productInfo += `<td>${product.order_id}</td>`;
+                    productInfo += `<td>${product.customer_id}</td>`;
+                    productInfo += `<td>${product.cart_id}</td>`;
+                    productInfo += '</tr>';
+                });
+
+                productInfo += '</tbody></table>';
+                productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
+                
+                productDiv.innerHTML = productInfo;
+            })
+            .catch(function(response){ 
+                console.log(response);
+            });
+        }
+    }
+</script>
 
 </body>
 

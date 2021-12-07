@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body>
+<body onload="getData()">
     <!-- Navigation Bar-->
 
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1200px-Dunder_Mifflin%2C_Inc.svg.png">
@@ -34,38 +34,7 @@
     <h3>Customers Table</h3>
     <hr>
 
-    <table style="margin: 50px; padding: 10px;" border="black">
-        <thead>
-            <tr>
-                <th>customer_id</th>
-                <th>name</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>cart_id</th>
-                <th>employee_id</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr>
-                <td><i>1</i></td>
-                <td>Zaki Ahmed</td>
-                <td>ahmedza@oregonstate.edu</td>
-                <td>123-123-1234</td>
-                <td>34</td>
-                <td>1</td>
-            </tr>
-
-            <tr>
-                <td><i>2</i></td>
-                <td>Bryan Rodriguez</td>
-                <td>rodribry@oregonstate.edu</td>
-                <td>777-777-7777</td>
-                <td>145</td>
-                <td>2</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="tableDiv">
     </div>
 
     <!-- Customer Commands-->
@@ -149,6 +118,164 @@
     </div>
 
 
+<script>
+    function getData() {
+        fetch("http://flip1.engr.oregonstate.edu:12626/getcustomers", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(
+            response => response.json()
+        )
+        .then(response => {
+            console.log(response);
+            // let productInfo=response[0].product_name;
+            let productInfo = '';
+            let productDiv = document.getElementById("tableDiv");
+            
+            productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+            productInfo += '<thead>';
+            productInfo += '<tr>';
+            productInfo += '<th>customer_id</th>';
+            productInfo += '<th>name</th>';
+            productInfo += '<th>email</th>';
+            productInfo += '<th>phone</th>';
+            productInfo += '<th>cart_id</th>';
+            productInfo += '<th>employee_id</th>';
+            productInfo += '</tr>';
+            productInfo += '</thead>';
+            productInfo += '<tbody>';
+            
+            response.map(product => {
+                productInfo += '<tr>';
+                productInfo += `<td>${product.customer_id}</td>`;
+                productInfo += `<td>${product.name}</td>`;
+                productInfo += `<td>${product.email}</td>`;
+                productInfo += `<td>${product.phone}</td>`;
+                productInfo += `<td>${product.cart_id}</td>`;
+                productInfo += `<td>${product.employee_id}</td>`;
+                productInfo += '</tr>';
+            });
+
+            productInfo += '</tbody></table>';
+            
+            productDiv.innerHTML = productInfo;
+        })
+        .catch(function(response){ 
+            console.log(response);
+        });
+    }
+
+    // function searchFunction() {
+    //     let name = document.getElementById("productName").value;
+    //     let category = document.getElementById("category").value;
+
+    //     if (name.length == 0) {
+    //         fetch(`http://flip1.engr.oregonstate.edu:12626/searchcategory/${category}`, {
+    //                 method: "GET",
+    //                 headers: {
+    //                     'Accept': 'application/json',
+    //                     'Content-Type': 'application/json'
+    //                 }
+    //             })
+    //             .then(response => response.json())
+    //             .then(
+    //                 response => {
+    //                 console.log(response);
+    //                 // let productInfo=response[0].product_name;
+    //                 let productInfo = '';
+    //                 let productDiv = document.getElementById("productDiv");
+                    
+    //                 productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+    //                 productInfo += '<thead>';
+    //                 productInfo += '<tr>';
+    //                 productInfo += '<th>product_id</th>';
+    //                 productInfo += '<th>name</th>';
+    //                 productInfo += '<th>price</th>';
+    //                 productInfo += '<th>inventory</th>';
+    //                 productInfo += '<th>description</th>';
+    //                 productInfo += '<th>category</th>';
+    //                 productInfo += '</tr>';
+    //                 productInfo += '</thead>';
+    //                 productInfo += '<tbody>';
+                    
+                    
+    //                 response.map(product => {
+    //                     productInfo += '<tr>';
+    //                     productInfo += `<td>${product.product_id}</td>`;
+    //                     productInfo += `<td>${product.name}</td>`;
+    //                     productInfo += `<td>${product.price}</td>`;
+    //                     productInfo += `<td>${product.inventory}</td>`;
+    //                     productInfo += `<td>${product.description}</td>`;
+    //                     productInfo += `<td>${product.category}</td>`;
+    //                     productInfo += '</tr>';
+    //                 });
+
+    //                 productInfo += '</tbody></table>';
+    //                 productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
+                    
+    //                 productDiv.innerHTML = productInfo;
+    //             })
+    //             .catch(function(response){
+    //                 console.log(response);
+    //             });
+        
+    //     } else {
+    //         fetch(`http://flip1.engr.oregonstate.edu:12626/searchproducts/${name}`, {
+    //         method: "GET",
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         }
+    //         })
+    //         .then(
+    //             response => response.json()
+    //         )
+    //         .then(response => {
+    //             console.log(response);
+    //             // let productInfo=response[0].product_name;
+    //             let productInfo = '';
+    //             let productDiv = document.getElementById("productDiv");
+                
+    //             productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
+    //             productInfo += '<thead>';
+    //             productInfo += '<tr>';
+    //             productInfo += '<th>product_id</th>';
+    //             productInfo += '<th>name</th>';
+    //             productInfo += '<th>price</th>';
+    //             productInfo += '<th>inventory</th>';
+    //             productInfo += '<th>description</th>';
+    //             productInfo += '<th>category</th>';
+    //             productInfo += '</tr>';
+    //             productInfo += '</thead>';
+    //             productInfo += '<tbody>';
+                
+                
+    //             response.map(product => {
+    //                 productInfo += '<tr>';
+    //                 productInfo += `<td>${product.product_id}</td>`;
+    //                 productInfo += `<td>${product.name}</td>`;
+    //                 productInfo += `<td>${product.price}</td>`;
+    //                 productInfo += `<td>${product.inventory}</td>`;
+    //                 productInfo += `<td>${product.description}</td>`;
+    //                 productInfo += `<td>${product.category}</td>`;
+    //                 productInfo += '</tr>';
+    //             });
+
+    //             productInfo += '</tbody></table>';
+    //             productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
+                
+    //             productDiv.innerHTML = productInfo;
+    //         })
+    //         .catch(function(response){ 
+    //             console.log(response);
+    //         });
+    //     }
+    // }
+</script>
 </body>
 
 </html>

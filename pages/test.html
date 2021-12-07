@@ -35,7 +35,38 @@
     <hr>
 
     <div id="productDiv">
-        
+        <table style="margin: 50px; padding: 10px;" border="black">
+            <thead>
+                <tr>
+                    <th>product_id</th>
+                    <th>name</th>
+                    <th>price</th>
+                    <th>inventory</th>
+                    <th>description</th>
+                    <th>category</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td><i>1</i></td>
+                    <td>White Paper</td>
+                    <td>5.00</td>
+                    <td>1000</td>
+                    <td>Paper that is white.</td>
+                    <td>Paper</td>
+                </tr>
+
+                <tr>
+                    <td><i>2</i></td>
+                    <td>Stapler</td>
+                    <td>10.00</td>
+                    <td>50</td>
+                    <td>This is a stapler.</td>
+                    <td>Supply</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <!-- Customer Commands-->
@@ -48,14 +79,14 @@
         <form style="width: 50%">
             <fieldset>
                 <!-- TODO: do we need to convert the price and inventory from text to integers? -->
-            <legend><b>SEARCH PRODUCT BY...(Case Sensitive!)</b></legend>
+            <legend><b>SEARCH PRODUCT BY...</b></legend>
             <label>Name:<br/>
-                <input type="text" id="productName" name="productName" />
+                <input type="text" name="productName" />
             </label><br/>
             or <br>
             <label>Category:<br/>
-                <input type="text" id="category" name="category" /></label><br/>
-            <button type="button" onclick="searchFunction()">Submit</button>
+                <input type="text" name="category" /></label><br/>
+            <button>Submit</button>
             </fieldset>
         </form><br>
 
@@ -171,12 +202,7 @@
             
             response.map(product => {
                 productInfo += '<tr>';
-                productInfo += `<td>${product.product_id}</td>`;
                 productInfo += `<td>${product.name}</td>`;
-                productInfo += `<td>${product.price}</td>`;
-                productInfo += `<td>${product.inventory}</td>`;
-                productInfo += `<td>${product.description}</td>`;
-                productInfo += `<td>${product.category}</td>`;
                 productInfo += '</tr>';
             });
 
@@ -187,113 +213,6 @@
         .catch(function(response){ 
             console.log(response);
         });
-    }
-
-    function searchFunction() {
-        let name = document.getElementById("productName").value;
-        let category = document.getElementById("category").value;
-
-        if (name.length == 0) {
-            fetch(`http://flip1.engr.oregonstate.edu:12626/searchcategory/${category}`, {
-                    method: "GET",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(
-                    response => {
-                    console.log(response);
-                    // let productInfo=response[0].product_name;
-                    let productInfo = '';
-                    let productDiv = document.getElementById("productDiv");
-                    
-                    productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
-                    productInfo += '<thead>';
-                    productInfo += '<tr>';
-                    productInfo += '<th>product_id</th>';
-                    productInfo += '<th>name</th>';
-                    productInfo += '<th>price</th>';
-                    productInfo += '<th>inventory</th>';
-                    productInfo += '<th>description</th>';
-                    productInfo += '<th>category</th>';
-                    productInfo += '</tr>';
-                    productInfo += '</thead>';
-                    productInfo += '<tbody>';
-                    
-                    
-                    response.map(product => {
-                        productInfo += '<tr>';
-                        productInfo += `<td>${product.product_id}</td>`;
-                        productInfo += `<td>${product.name}</td>`;
-                        productInfo += `<td>${product.price}</td>`;
-                        productInfo += `<td>${product.inventory}</td>`;
-                        productInfo += `<td>${product.description}</td>`;
-                        productInfo += `<td>${product.category}</td>`;
-                        productInfo += '</tr>';
-                    });
-
-                    productInfo += '</tbody></table>';
-                    productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
-                    
-                    productDiv.innerHTML = productInfo;
-                })
-                .catch(function(response){
-                    console.log(response);
-                });
-        
-        } else {
-            fetch(`http://flip1.engr.oregonstate.edu:12626/searchproducts/${name}`, {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-            })
-            .then(
-                response => response.json()
-            )
-            .then(response => {
-                console.log(response);
-                // let productInfo=response[0].product_name;
-                let productInfo = '';
-                let productDiv = document.getElementById("productDiv");
-                
-                productInfo += '<table style="margin: 50px; padding: 10px;" border="black">';
-                productInfo += '<thead>';
-                productInfo += '<tr>';
-                productInfo += '<th>product_id</th>';
-                productInfo += '<th>name</th>';
-                productInfo += '<th>price</th>';
-                productInfo += '<th>inventory</th>';
-                productInfo += '<th>description</th>';
-                productInfo += '<th>category</th>';
-                productInfo += '</tr>';
-                productInfo += '</thead>';
-                productInfo += '<tbody>';
-                
-                
-                response.map(product => {
-                    productInfo += '<tr>';
-                    productInfo += `<td>${product.product_id}</td>`;
-                    productInfo += `<td>${product.name}</td>`;
-                    productInfo += `<td>${product.price}</td>`;
-                    productInfo += `<td>${product.inventory}</td>`;
-                    productInfo += `<td>${product.description}</td>`;
-                    productInfo += `<td>${product.category}</td>`;
-                    productInfo += '</tr>';
-                });
-
-                productInfo += '</tbody></table>';
-                productInfo += '<br><button type="button" onclick="getData()">Show All</button>';
-                
-                productDiv.innerHTML = productInfo;
-            })
-            .catch(function(response){ 
-                console.log(response);
-            });
-        }
     }
 </script>
 </body>
